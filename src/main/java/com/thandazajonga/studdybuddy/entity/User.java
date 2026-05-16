@@ -1,15 +1,21 @@
 package com.thandazajonga.studdybuddy.entity;
 
 
+import jakarta.persistence.*;
+
 import java.util.Objects;
 
+@Entity
+@Table (name = "app_user")
 public class User {
-
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
     private String email;
     private String password;
 
+    public User() {}
     public User(Integer id, String name, String email, String password) {
         this.id = id;
         this.name = name;
