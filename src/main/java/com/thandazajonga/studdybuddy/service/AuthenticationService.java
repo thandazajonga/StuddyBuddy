@@ -5,6 +5,7 @@ import com.thandazajonga.studdybuddy.dto.LoginRequest;
 import com.thandazajonga.studdybuddy.dto.RegisterRequest;
 import com.thandazajonga.studdybuddy.entity.User;
 import com.thandazajonga.studdybuddy.repository.UserRepository;
+import com.thandazajonga.studdybuddy.security.JwtService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -14,9 +15,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 public class AuthenticationService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
-    public AuthenticationService(UserRepository userRepository) {
+    private final JwtService jwtService;
+
+    public AuthenticationService(UserRepository userRepository,PasswordEncoder passwordEncoder,JwtService jwtService) {
         this.userRepository = userRepository;
-        this.passwordEncoder = new BCryptPasswordEncoder();
+        this.passwordEncoder = passwordEncoder;
+        this.jwtService = jwtService;
     }
 
     public User register(RegisterRequest requestUser) {
@@ -37,6 +41,6 @@ public class AuthenticationService {
         if(!passwordMatch){
             return "Invalid password";
         }
-        return "Logged in successfully";
+        return jwtService.generateToken(user.getEmail());
     }
 }
