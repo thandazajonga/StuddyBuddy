@@ -8,3 +8,12 @@ Content-Type: application/json
   "password": "123456"
 }
 ###
+### Send POST request with json body
+POST http://localhost:8080/auth/login
+Content-Type: application/json
+
+{
+  "email": "thandaz@gmail.com",
+  "password": "12345"
+}
+###

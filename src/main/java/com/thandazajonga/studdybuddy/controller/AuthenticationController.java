@@ -1,5 +1,6 @@
 package com.thandazajonga.studdybuddy.controller;
 
+import com.thandazajonga.studdybuddy.dto.LoginRequest;
 import com.thandazajonga.studdybuddy.service.AuthenticationService;
 import com.thandazajonga.studdybuddy.dto.RegisterRequest;
 import org.springframework.http.ResponseEntity;
@@ -19,5 +20,9 @@ public class AuthenticationController {
     @PostMapping("/register")
     public ResponseEntity<?> registerUser(@RequestBody RegisterRequest requestUser){
         return ResponseEntity.ok(authenticationService.register(requestUser));
+    }
+    @PostMapping("/login")
+    public ResponseEntity<?> loginUser(@RequestBody LoginRequest requestUser){
+        return ResponseEntity.ok(authenticationService.login(requestUser));
     }
 }
