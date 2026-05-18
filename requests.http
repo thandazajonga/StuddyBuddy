@@ -23,7 +23,7 @@ Accept: application/json
 
 ###
 POST http://localhost:8080/study_groups/create
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtaXNzdGhhbmRhemFAZ21haWwuY29tIiwiaWF0IjoxNzc5MTI3Nzg1LCJleHAiOjE3NzkxMzEzODV9.w2TB3jg8QBaaPMyCCOp8OCpugTB972AGZPr5A3PvK24
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtaXNzdGhhbmRhemFAZ21haWwuY29tIiwiaWF0IjoxNzc5MTM5ODY2LCJleHAiOjE3NzkxNDM0NjZ9.m71Y9-Ck75sNFwPLTvjkMu8JIHURW2GHCQ9I4difBnc
 Content-Type: application/json
 
 {
@@ -32,4 +32,7 @@ Content-Type: application/json
   "Description": "Exam Preparation",
   "maxMembers": 5
 }
+###
+GET http://localhost:8080/study_groups
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtaXNzdGhhbmRhemFAZ21haWwuY29tIiwiaWF0IjoxNzc5MTM5ODY2LCJleHAiOjE3NzkxNDM0NjZ9.m71Y9-Ck75sNFwPLTvjkMu8JIHURW2GHCQ9I4difBnc
 ###

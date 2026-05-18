@@ -2,6 +2,7 @@ package com.thandazajonga.studdybuddy.service;
 
 import com.thandazajonga.studdybuddy.dto.CreateGroupRequest;
 import com.thandazajonga.studdybuddy.dto.CreateGroupResponse;
+import com.thandazajonga.studdybuddy.dto.StudyGroupSummaryResponse;
 import com.thandazajonga.studdybuddy.entity.StudyGroup;
 import com.thandazajonga.studdybuddy.entity.User;
 import com.thandazajonga.studdybuddy.repository.StudyGroupRepository;
@@ -19,6 +20,23 @@ public class StudyGroupService {
     public StudyGroupService(StudyGroupRepository studyGroupRepository, UserRepository userRepository) {
         this.studyGroupRepository = studyGroupRepository;
         this.userRepository = userRepository;
+    }
+    public List<StudyGroupSummaryResponse> getAllStudyGroups() {
+        List<StudyGroup> studyGroups = studyGroupRepository.findAll();
+        return studyGroups.stream().map(studyGroup -> {
+            StudyGroupSummaryResponse response = new StudyGroupSummaryResponse();
+            response.setStudyGroupId(studyGroup.getStudyGroupId());
+            response.setStudyGroupName(studyGroup.getStudyGroupName());
+            response.setDescription(studyGroup.getDescription());
+            response.setCourseCode(studyGroup.getCourseCode());
+
+            response.setMaxMembers(studyGroup.getMaxMembers());
+
+            response.setCurrentMembers(studyGroup.getMembers().size());
+
+            response.setOwnerName(studyGroup.getOwner().getName());
+            return response;
+        }).toList();
     }
 
     public CreateGroupResponse createStudyGroup(CreateGroupRequest createGroupRequest,String email) {
