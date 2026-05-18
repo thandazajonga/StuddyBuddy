@@ -4,7 +4,7 @@ Content-Type: application/json
 
 {
   "name": "Thandaza Jonga",
-  "email": "thandaza@gmail.com",
+  "email": "missthandaza@gmail.com",
   "password": "123456"
 }
 ###
@@ -13,11 +13,23 @@ POST http://localhost:8080/auth/login
 Content-Type: application/json
 
 {
-  "email": "thandaza@gmail.com",
-  "password": "12345"
+  "email": "missthandaza@gmail.com",
+  "password": "123456"
 }
 ###
 GET http://localhost:8080/profile
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0aGFuZGF6YUBnbWFpbC5jb20iLCJpYXQiOjE3NzkxMTg4ODIsImV4cCI6MTc3OTEyMjQ4Mn0.2_OqfWjG7lrA2k2Cy3mxeEBrgvTA_l-MuC4r4UAFWew
 Accept: application/json
+
+###
+POST http://localhost:8080/study_groups/create
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtaXNzdGhhbmRhemFAZ21haWwuY29tIiwiaWF0IjoxNzc5MTI3Nzg1LCJleHAiOjE3NzkxMzEzODV9.w2TB3jg8QBaaPMyCCOp8OCpugTB972AGZPr5A3PvK24
+Content-Type: application/json
+
+{
+  "name": "CSC3002 Study Group",
+  "courseCode": "CSC3002",
+  "Description": "Exam Preparation",
+  "maxMembers": 5
+}
 ###

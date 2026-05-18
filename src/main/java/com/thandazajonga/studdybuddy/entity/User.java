@@ -1,19 +1,25 @@
 package com.thandazajonga.studdybuddy.entity;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
-@Table (name = "app_user")
+@Table (name = "app_users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
     private String email;
+    @JsonIgnore
     private String password;
+    @ManyToMany(mappedBy = "members")
+    private List<StudyGroup> studygroups= new ArrayList<>();
 
     public User() {}
     public User(Integer id, String name, String email, String password) {
