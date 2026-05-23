@@ -18,6 +18,16 @@ public class StudyGroupSummaryResponse {
     public StudyGroupSummaryResponse() {
     }
 
+    public StudyGroupSummaryResponse(Integer studyGroupId, String studyGroupName, String description, String courseCode, Integer maxMembers, Integer currentMembers, String ownerName) {
+        this.studyGroupId = studyGroupId;
+        this.studyGroupName = studyGroupName;
+        this.description = description;
+        this.courseCode = courseCode;
+        this.maxMembers = maxMembers;
+        this.currentMembers = currentMembers;
+        this.ownerName = ownerName;
+    }
+
     public Integer getStudyGroupId() {
         return studyGroupId;
     }

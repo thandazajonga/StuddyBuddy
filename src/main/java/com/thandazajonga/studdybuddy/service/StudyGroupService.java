@@ -7,6 +7,9 @@ import com.thandazajonga.studdybuddy.entity.StudyGroup;
 import com.thandazajonga.studdybuddy.entity.User;
 import com.thandazajonga.studdybuddy.repository.StudyGroupRepository;
 import com.thandazajonga.studdybuddy.repository.UserRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -41,6 +44,21 @@ public class StudyGroupService {
             return response;
         }).toList();
     }
+    public Page<StudyGroupSummaryResponse> getAllStudyGroups(int page, int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        return studyGroupRepository
+                .findAll(pageable)
+                .map(group -> new StudyGroupSummaryResponse(
+                        group.getStudyGroupId(),
+                        group.getStudyGroupName(),
+                        group.getDescription(),
+                        group.getCourseCode(),
+                        group.getMaxMembers(),
+                        group.getMembers().size(),
+                        group.getOwner().getName()
+                ));
+
+    }
     public String joinStudyGroup(Integer studyGroupId, String email) {
         //Find the group
         StudyGroup studyGroup= studyGroupRepository.findById(studyGroupId).orElseThrow(()-> new RuntimeException("Study Group not found"));
@@ -69,6 +87,18 @@ public class StudyGroupService {
        }
        studyGroupRepository.delete(studyGroup);
        return "Successfully deleted study group!";
+    }
+    public List<StudyGroupSummaryResponse> searchByCourseCode(String courseCode) {
+        List<StudyGroup> studyGroups = studyGroupRepository.findByCourseCodeContainingIgnoreCase(courseCode);
+        return studyGroups.stream().map(studyGroup -> new StudyGroupSummaryResponse(
+                studyGroup.getStudyGroupId(),
+                studyGroup.getStudyGroupName(),
+                studyGroup.getCourseCode(),
+                studyGroup.getDescription(),
+                studyGroup.getMaxMembers(),
+                studyGroup.getMembers().size(),
+                studyGroup.getOwner().getName()
+        )).toList();
     }
     public StudyGroupSummaryResponse getStudyGroupSummary(Integer studyGroupId, String email) {
         StudyGroup studyGroup=studyGroupRepository.findById(studyGroupId).orElseThrow(()-> new RuntimeException("Study Group not found"));

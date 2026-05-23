@@ -5,6 +5,7 @@ import com.thandazajonga.studdybuddy.dto.CreateGroupResponse;
 import com.thandazajonga.studdybuddy.dto.StudyGroupSummaryResponse;
 import com.thandazajonga.studdybuddy.entity.StudyGroup;
 import com.thandazajonga.studdybuddy.service.StudyGroupService;
+import org.springframework.data.domain.Page;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,15 +24,23 @@ public class StudyGroupController {
         String email = authentication.getName();
         return studyGroupService.createStudyGroup(createGroupRequest,email);
     }
+    @GetMapping
+    public Page<StudyGroupSummaryResponse> getGroups(@RequestParam int page, @RequestParam int size, Authentication authentication) {
+        return studyGroupService.getAllStudyGroups(page,size);
+    }
+    @GetMapping("/search")
+    public List<StudyGroupSummaryResponse> searchByCourseCode(@RequestParam String courseCode) {
+        return studyGroupService.searchByCourseCode(courseCode);
+    }
     @DeleteMapping("/{studyGroupId}/delete")
     public String deleteStudyGroup(@PathVariable Integer studyGroupId, Authentication authentication) {
         String email = authentication.getName();
         return studyGroupService.deleteStudyGroup(studyGroupId,email);
     }
-    @GetMapping
-    public List<StudyGroupSummaryResponse> getAllStudyGroups() {
-        return studyGroupService.getAllStudyGroups();
-    }
+//    @GetMapping
+//    public List<StudyGroupSummaryResponse> getAllStudyGroups() {
+//        return studyGroupService.getAllStudyGroups();
+//    }
     @PostMapping("/{studyGroupId}/join")
     public String joinStudyGroup(@PathVariable Integer studyGroupId, Authentication authentication) {
         String email = authentication.getName();

@@ -41,11 +41,11 @@ Accept: application/json
 
 ###
 POST http://localhost:8080/study_groups/create
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtaXNzdGhhQGdtYWlsLmNvbSIsImlhdCI6MTc3OTU1NjY4MSwiZXhwIjoxNzc5NTYwMjgxfQ.DJE0tBbjrVFtq6jkkYIcUCoLDkZq96CQFzckRJ-2CHY
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtaXNzdGhhQGdtYWlsLmNvbSIsImlhdCI6MTc3OTU2MjgxNCwiZXhwIjoxNzc5NTY2NDE0fQ.OCwKfaKEfvGWm2c-Ukdqw6p18vCqRwyunx0M0Yc3oss
 Content-Type: application/json
 
 {
-  "name": "Two Study Group",
+  "name": "3 Study Group",
   "courseCode": "CSC1016",
   "Description": "Exam Preparation",
   "maxMembers": 3
@@ -66,4 +66,10 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtaXNzdGhhQGdtYWlsLmNvbSIsI
 ###
 DELETE http://localhost:8080/study_groups/1/delete
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtaXNzdGhhQGdtYWlsLmNvbSIsImlhdCI6MTc3OTU1NjY4MSwiZXhwIjoxNzc5NTYwMjgxfQ.DJE0tBbjrVFtq6jkkYIcUCoLDkZq96CQFzckRJ-2CHY
+###
+GET http://localhost:8080/study_groups/search?courseCode=CSC1016
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtaXNzdGhhQGdtYWlsLmNvbSIsImlhdCI6MTc3OTU2MDEwNiwiZXhwIjoxNzc5NTYzNzA2fQ.rnemKDh3G13FoVss4dIFmXdDxv_WCD2h4k0XUXVnwAk
+###
+GET http://localhost:8080/study_groups?page=0&size=4
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtaXNzdGhhQGdtYWlsLmNvbSIsImlhdCI6MTc3OTU2MjgxNCwiZXhwIjoxNzc5NTY2NDE0fQ.OCwKfaKEfvGWm2c-Ukdqw6p18vCqRwyunx0M0Yc3oss
 ###
