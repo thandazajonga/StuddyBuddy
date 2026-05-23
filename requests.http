@@ -4,18 +4,36 @@ Content-Type: application/json
 
 {
   "name": "Thandaza Jonga",
-  "email": "missthandaza@gmail.com",
+  "email": "misstha@gmail.com",
   "password": "123456"
 }
 ###
+### Send POST request with json body
+POST http://localhost:8080/auth/register
+Content-Type: application/json
+
+{
+  "name": "Kwanele Siqongana",
+  "email": "missk@gmail.com",
+  "password": "123456"
+}
+###
+POST http://localhost:8080/auth/login
+Content-Type: application/json
+
+{
+  "email": "misstha@gmail.com",
+  "password": "123456"
+}
 ### Send POST request with json body
 POST http://localhost:8080/auth/login
 Content-Type: application/json
 
 {
-  "email": "missthandaza@gmail.com",
+  "email": "missk@gmail.com",
   "password": "123456"
 }
+
 ###
 GET http://localhost:8080/profile
 Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0aGFuZGF6YUBnbWFpbC5jb20iLCJpYXQiOjE3NzkxMTg4ODIsImV4cCI6MTc3OTEyMjQ4Mn0.2_OqfWjG7lrA2k2Cy3mxeEBrgvTA_l-MuC4r4UAFWew
@@ -23,16 +41,29 @@ Accept: application/json
 
 ###
 POST http://localhost:8080/study_groups/create
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtaXNzdGhhbmRhemFAZ21haWwuY29tIiwiaWF0IjoxNzc5MTM5ODY2LCJleHAiOjE3NzkxNDM0NjZ9.m71Y9-Ck75sNFwPLTvjkMu8JIHURW2GHCQ9I4difBnc
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtaXNzdGhhQGdtYWlsLmNvbSIsImlhdCI6MTc3OTU1NjY4MSwiZXhwIjoxNzc5NTYwMjgxfQ.DJE0tBbjrVFtq6jkkYIcUCoLDkZq96CQFzckRJ-2CHY
 Content-Type: application/json
 
 {
-  "name": "CSC3002 Study Group",
-  "courseCode": "CSC3002",
+  "name": "Two Study Group",
+  "courseCode": "CSC1016",
   "Description": "Exam Preparation",
-  "maxMembers": 5
+  "maxMembers": 3
 }
 ###
+GET http://localhost:8080/study_groups/2
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtaXNzdGhhQGdtYWlsLmNvbSIsImlhdCI6MTc3OTQ4OTI1MiwiZXhwIjoxNzc5NDkyODUyfQ.2ux_2VoizoHFzkTJBiBQpi7MATr9EbvckEHfcgnaI9E
+###
 GET http://localhost:8080/study_groups
-Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtaXNzdGhhbmRhemFAZ21haWwuY29tIiwiaWF0IjoxNzc5MTM5ODY2LCJleHAiOjE3NzkxNDM0NjZ9.m71Y9-Ck75sNFwPLTvjkMu8JIHURW2GHCQ9I4difBnc
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtaXNzdGhhQGdtYWlsLmNvbSIsImlhdCI6MTc3OTU1NjY4MSwiZXhwIjoxNzc5NTYwMjgxfQ.DJE0tBbjrVFtq6jkkYIcUCoLDkZq96CQFzckRJ-2CHY
+###
+POST http://localhost:8080/study_groups/1/join
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtaXNza0BnbWFpbC5jb20iLCJpYXQiOjE3Nzk0ODYyNzEsImV4cCI6MTc3OTQ4OTg3MX0.293DCLZFNkIl63HxbWg8Fs5Wu41KPL3yVAG2zXwLjok
+
+###
+DELETE http://localhost:8080/study_groups/1/leave
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtaXNzdGhhQGdtYWlsLmNvbSIsImlhdCI6MTc3OTU1NjY4MSwiZXhwIjoxNzc5NTYwMjgxfQ.DJE0tBbjrVFtq6jkkYIcUCoLDkZq96CQFzckRJ-2CHY
+###
+DELETE http://localhost:8080/study_groups/1/delete
+Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJtaXNzdGhhQGdtYWlsLmNvbSIsImlhdCI6MTc3OTU1NjY4MSwiZXhwIjoxNzc5NTYwMjgxfQ.DJE0tBbjrVFtq6jkkYIcUCoLDkZq96CQFzckRJ-2CHY
 ###

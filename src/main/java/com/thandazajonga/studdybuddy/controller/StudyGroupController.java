@@ -23,8 +23,28 @@ public class StudyGroupController {
         String email = authentication.getName();
         return studyGroupService.createStudyGroup(createGroupRequest,email);
     }
+    @DeleteMapping("/{studyGroupId}/delete")
+    public String deleteStudyGroup(@PathVariable Integer studyGroupId, Authentication authentication) {
+        String email = authentication.getName();
+        return studyGroupService.deleteStudyGroup(studyGroupId,email);
+    }
     @GetMapping
     public List<StudyGroupSummaryResponse> getAllStudyGroups() {
         return studyGroupService.getAllStudyGroups();
+    }
+    @PostMapping("/{studyGroupId}/join")
+    public String joinStudyGroup(@PathVariable Integer studyGroupId, Authentication authentication) {
+        String email = authentication.getName();
+        return studyGroupService.joinStudyGroup(studyGroupId, email);
+    }
+    @GetMapping("/{studyGroupId}")
+    public StudyGroupSummaryResponse getStudyGroupSummary(@PathVariable Integer studyGroupId,Authentication authentication) {
+        String email = authentication.getName();
+        return studyGroupService.getStudyGroupSummary(studyGroupId, email);
+    }
+    @DeleteMapping("/{studyGroupId}/leave")
+    public String leaveStudyGroup(@PathVariable Integer studyGroupId, Authentication authentication) {
+        String email = authentication.getName();
+        return studyGroupService.leaveStudyGroup(studyGroupId,email);
     }
 }
